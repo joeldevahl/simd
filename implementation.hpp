@@ -1,3 +1,9 @@
+/*
+ *	Copyright (c) 2009 Joel de Vahl
+ *	              2009 Markus Ålind
+ *	see LICENSE file for more info
+ */
+
 #ifndef INC_SIMD_IMPLEMENTATION_HPP
 #define INC_SIMD_IMPLEMENTATION_HPP
 #include "intrinsics.hpp"

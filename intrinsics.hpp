@@ -1,5 +1,21 @@
+/*
+ *	Copyright (c) 2009 Joel de Vahl
+ *	              2009 Markus Ålind
+ *	see LICENSE file for more info
+ */
+
 #ifndef INC_SIMD_INTRINSICS_HPP
 #define INC_SIMD_INTRINSICS_HPP
+
+#include <cmath>
+
+#ifndef F32_INF
+#       define F32_INF  static_cast<f32>(HUGE_VAL)
+#endif
+
+#ifndef F32_NINF
+#       define F32_NINF static_cast<f32>(-HUGE_VAL)
+#endif
 
 #ifndef ALIGN
 #	ifdefined(COMPILER_GCC)
