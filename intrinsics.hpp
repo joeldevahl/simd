@@ -8,17 +8,18 @@
 #define INC_SIMD_INTRINSICS_HPP
 
 #include <cmath>
+#include <stdint.h>
 
 #ifndef F32_INF
-#       define F32_INF  static_cast<f32>(HUGE_VAL)
+#       define F32_INF  static_cast<float>(HUGE_VAL)
 #endif
 
 #ifndef F32_NINF
-#       define F32_NINF static_cast<f32>(-HUGE_VAL)
+#       define F32_NINF static_cast<float>(-HUGE_VAL)
 #endif
 
 #ifndef ALIGN
-#	ifdefined(COMPILER_GCC)
+#	if defined(COMPILER_GCC)
 #       	define ALIGN(_Align) __attribute__ ((aligned (_Align)))
 #	elif defined(COMPILER_MSVC)
 #       	define ALIGN(_Align) __declspec(align(_Align))
@@ -266,27 +267,6 @@ FORCE_INLINE void vStore_u32(uint32_t *p, v128 v);
 #else
 #endif
 
-// Helper print functions
-
-#define vDebugPrint(V) vDebugPrint_helper(#V, V)
-#define vDebugPrint_u32(V) vDebugPrint_u32_helper(#V, V)
-#define vDebugPrint_u32x(V) vDebugPrint_u32x_helper(#V, V)
-
-#include <cstdio>
-
-FORCE_INLINE void vDebugPrint_helper(const char* name, v128 v)
-{	
-	printf("%s = (%f %f %f %f)\n", name, vExtract(v, 0), vExtract(v, 1), vExtract(v, 2), vExtract(v, 3));
-}
-
-FORCE_INLINE void vDebugPrint_u32_helper(const char* name, v128 v)
-{
-	printf("%s = (%u %u %u %u)\n", name, vExtract_u32(v, 0), vExtract_u32(v, 1), vExtract_u32(v, 2), vExtract_u32(v, 3));
-}
-FORCE_INLINE void vDebugPrint_u32x_helper(const char* name, v128 v)
-{
-	printf("%s = (0x%x 0x%x 0x%x 0x%x)\n", name, vExtract_u32(v, 0), vExtract_u32(v, 1), vExtract_u32(v, 2), vExtract_u32(v, 3));
-}
 
 /*
 	Function: vAdd
@@ -1085,10 +1065,10 @@ FORCE_INLINE float vExtract(v128 v, uint8_t i)
 #elif defined(SIMD_SSE)
 	switch(i)
 	{
-		case 0:	return _mm_cvtss_float(v);
-		case 1:	return _mm_cvtss_float(_mm_shuffle_ps(v, v, _MM_SHUFFLE(0,0,0,1)));
-		case 2:	return _mm_cvtss_float(_mm_shuffle_ps(v, v, _MM_SHUFFLE(0,0,0,2)));
-		case 3:	return _mm_cvtss_float(_mm_shuffle_ps(v, v, _MM_SHUFFLE(0,0,0,3)));
+		case 0:	return _mm_cvtss_f32(v);
+		case 1:	return _mm_cvtss_f32(_mm_shuffle_ps(v, v, _MM_SHUFFLE(0,0,0,1)));
+		case 2:	return _mm_cvtss_f32(_mm_shuffle_ps(v, v, _MM_SHUFFLE(0,0,0,2)));
+		case 3:	return _mm_cvtss_f32(_mm_shuffle_ps(v, v, _MM_SHUFFLE(0,0,0,3)));
 	}
 
 #else

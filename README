@@ -1,0 +1,8 @@
+ - simple simd abstraction layer -
+
+Compile by defining your compiler COMPILER_GCC or COMPILER_MSVC
+and your instruction set: SIMD_NONE, SIMD_ALTIVEC, SIMD_SPU or SIMD_SEE.
+For SSE, define SIMD_SSE to be the instruction set version you want to
+compile for (SIMD_SSE=3).
+
+This library is work in progress, any feedback and patches are welcome.

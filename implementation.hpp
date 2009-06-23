@@ -177,10 +177,10 @@ FORCE_INLINE void mMulM(const v128 &_rvM1S0, const v128 &_rvM1S1, const v128 &_r
 void FORCE_INLINE mFromVectors_Slow(const v128& _rvTrans, const v128& _rvX, const v128& _rvY, const v128& _rvZ, 
 	v128& _rM0Dst, v128& _rM1Dst, v128& _rM2Dst, v128& _rM3Dst)
 {
-	f32* rfTrans = (f32*)&_rvTrans;
-	f32* rfX = (f32*)&_rvX;
-	f32* rfY = (f32*)&_rvY;
-	f32* rfZ = (f32*)&_rvZ;
+	float* rfTrans = (float*)&_rvTrans;
+	float* rfX = (float*)&_rvX;
+	float* rfY = (float*)&_rvY;
+	float* rfZ = (float*)&_rvZ;
 	
 	/*matrix.M11 = x_axis.X;
 	matrix.M12 = x_axis.Y;
